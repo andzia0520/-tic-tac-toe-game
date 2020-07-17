@@ -1,3 +1,5 @@
 rootProject.name = 'kodilla-course'
-include 'kodilla-first-project'
+step1
+include 'kodilla-individual-project'
+master
 
