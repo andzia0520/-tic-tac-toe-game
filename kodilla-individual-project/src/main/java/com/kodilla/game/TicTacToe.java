@@ -13,11 +13,11 @@ import javafx.stage.Stage;
 
 public class TicTacToe extends Application {
 
-    private final Image imageback = new Image("file/scene.jpg");
-    private Image cross = new Image("file/cross.jpg");
-    private Image circle = new Image("file/circle.png");
+    private final Image imageBack = new Image("file/scene.jpg");
+    private final Image cross = new Image("file/cross.jpg");
+    private final Image circle = new Image("file/circle.png");
 
-    private FlowPane signs = new FlowPane(Orientation.HORIZONTAL);
+    //private FlowPane signs = new FlowPane(Orientation.HORIZONTAL);
 
     public static void main(String[] args) {
         launch(args);
@@ -27,7 +27,7 @@ public class TicTacToe extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
-        BackgroundImage backgroundImage = new BackgroundImage(imageback, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+        BackgroundImage backgroundImage = new BackgroundImage(imageBack, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
 
         GridPane grid = new GridPane();
@@ -39,7 +39,7 @@ public class TicTacToe extends Application {
         ImageView img = new ImageView(cross);
         //signs.getChildren().add(img);
 
-        ImageView img2 = new ImageView(cross);
+        ImageView img2 = new ImageView(circle);
         //signs.getChildren().add(img2);
 
         ImageView img3 = new ImageView(cross);
@@ -48,7 +48,7 @@ public class TicTacToe extends Application {
         ImageView img4 = new ImageView(circle);
         //signs.getChildren().add(img4);
 
-        ImageView img5 = new ImageView(circle);
+        ImageView img5 = new ImageView(cross);
         //signs.getChildren().add(img5);
 
         ImageView img6 = new ImageView(circle);
