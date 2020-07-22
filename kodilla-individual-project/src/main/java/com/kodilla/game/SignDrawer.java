@@ -1,6 +1,7 @@
 package com.kodilla.game;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
@@ -18,36 +19,53 @@ public class SignDrawer {
         BackgroundImage backgroundImage = new BackgroundImage(new Image("file/scene.jpg"), BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         Background background = new Background(backgroundImage);
 
-        grid.setPadding(new Insets(5, 5, 5, 0));
-        grid.setHgap(20);
-        grid.setVgap(17);
+        grid.getColumnConstraints().add(new ColumnConstraints(100));
+        grid.getColumnConstraints().add(new ColumnConstraints(110));
+        grid.getColumnConstraints().add(new ColumnConstraints(120));
+
+        grid.getRowConstraints().add(new RowConstraints(53));
+        grid.getRowConstraints().add(new RowConstraints(100));
+        grid.getRowConstraints().add(new RowConstraints(140));
+
+        grid.setAlignment(Pos.TOP_LEFT);
+        grid.setPadding(new Insets(0, 0, 0, 0));
+        grid.setHgap(5);
+        grid.setVgap(10);
         grid.setBackground(background);
     }
-
 
     public void addSign(int position, Sign sign) {
         switch(position) {
             case 1:
-                grid.add(sign,5,4,1,1);
+                grid.add(sign,1,1,1,1);
                 break;
             case 2:
-                grid.add(sign,7,4,1,1);
+                grid.add(sign,2,1,1,1);
                 break;
             case 3:
-                grid.add(sign,9,4,1,1);
+                grid.add(sign,3,1,1,1);
+                break;
+            case 4:
+                grid.add(sign,1,2,1,1);
+                break;
+            case 5:
+                grid.add(sign,2,2,1,1);
+                break;
+            case 6:
+                grid.add(sign,3,2,1,1);
+                break;
+            case 7:
+                grid.add(sign,1,3,1,1);
+                break;
+            case 8:
+                grid.add(sign,2,3,1,1);
+                break;
+            case 9:
+                grid.add(sign,3,3,1,1);
                 break;
 
         }
+
     }
 
-
-//
-//        grid.add(pos2,7,4,1,1);
-//        grid.add(pos3,9,4,1,1);
-//        grid.add(pos4,5,7,1,1);
-//        grid.add(pos5,7,7,1,1);
-//        grid.add(pos6,9,7,1,1);
-//        grid.add(pos7,5,10,1,1);
-//        grid.add(pos8,7,10,1,1);
-//        grid.add(pos9,9,10,1,1);
 }
