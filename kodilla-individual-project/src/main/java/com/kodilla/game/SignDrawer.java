@@ -1,3 +1,4 @@
+/*
 package com.kodilla.game;
 
 import javafx.scene.image.Image;
@@ -25,3 +26,4 @@ public class SignDrawer {
 
     }
 }
+*/
