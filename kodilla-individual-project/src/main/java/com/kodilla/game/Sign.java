@@ -1,8 +1,13 @@
-/*
 package com.kodilla.game;
 
-public interface Sign {
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-    void add();
+public abstract class Sign extends ImageView {
+
+    public Sign(Image image) {
+        super(image);
+    }
+
+    abstract public boolean isCross();
 }
-*/

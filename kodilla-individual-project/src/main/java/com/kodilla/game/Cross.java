@@ -1,15 +1,18 @@
-/*
 package com.kodilla.game;
 
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
-public class Cross implements Sign {
+public class Cross extends Sign {
+
+    public Cross() {
+        super(new Image ("file/cross.jpg" ));
+    }
 
     @Override
-    public void add() {
-        System.out.println("Player's turn");
-
+    public boolean isCross() {
+        return true;
     }
 }
-*/

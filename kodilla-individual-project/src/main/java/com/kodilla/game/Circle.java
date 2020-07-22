@@ -1,13 +1,16 @@
-/*
 package com.kodilla.game;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-public class Circle implements Sign {
+public class Circle extends Sign {
+
+    public Circle() {
+        super(new Image ("file/circle.png" ));
+    }
 
     @Override
-    public void add() {
-        System.out.println("Computer's turn");
+    public boolean isCross() {
+        return false;
     }
 }
-*/
