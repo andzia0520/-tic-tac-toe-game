@@ -1,15 +1,16 @@
 package com.kodilla.game;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class TicTacToe extends Application {
 
-    private Image imageback = new Image("file/scene.jpg");
+    //private FlowPane signs = new FlowPane(Orientation.HORIZONTAL);
 
     public static void main(String[] args) {
         launch(args);
@@ -18,19 +19,37 @@ public class TicTacToe extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, true, false);
-        BackgroundImage backgroundImage = new BackgroundImage(imageback, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
-        Background background = new Background(backgroundImage);
+        SignDrawer signDrawer = new SignDrawer();
 
-        GridPane grid = new GridPane();
-        grid.setBackground(background);
+        GameState state = new GameState(signDrawer);
 
-        Scene scene = new Scene((Parent) grid, 500, 500);
+        Scene scene = new Scene((Parent) signDrawer.getGrid(), 500, 500);
 
         primaryStage.setTitle("TicTacToe");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case DIGIT1:  state.addSign(1, new Cross()); break;
+                    case DIGIT2:  state.addSign(2, new Cross()); break;
+                    case DIGIT3:  state.addSign(3, new Cross()); break;
+
+                }
+            }
+        });
+
+        //
+
+
     }
+
+
+
+
 }
 
 
