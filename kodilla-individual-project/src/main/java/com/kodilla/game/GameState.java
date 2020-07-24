@@ -6,7 +6,6 @@ import java.util.Map;
 public class GameState {
 
     private final SignDrawer signDrawer;
-
     private Map<Integer, Sign> state = new HashMap<>();
 
     public GameState(SignDrawer signDrawer) {
@@ -21,9 +20,9 @@ public class GameState {
         state.put(position, sign);
         signDrawer.addSign(position, sign);
     }
-public boolean isFinnished() {
+
+    public boolean isFinnished() {
         return false;
-}
-    //sprawdza aktualny stan ggry i sprawdza czy ktos wygrał , kto wygrał
+    }
 }
 

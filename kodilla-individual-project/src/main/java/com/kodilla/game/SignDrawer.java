@@ -35,37 +35,34 @@ public class SignDrawer {
     }
 
     public void addSign(int position, Sign sign) {
-        switch(position) {
+        switch (position) {
             case 1:
-                grid.add(sign,1,1,1,1);
+                grid.add(sign, 1, 1, 1, 1);
                 break;
             case 2:
-                grid.add(sign,2,1,1,1);
+                grid.add(sign, 2, 1, 1, 1);
                 break;
             case 3:
-                grid.add(sign,3,1,1,1);
+                grid.add(sign, 3, 1, 1, 1);
                 break;
             case 4:
-                grid.add(sign,1,2,1,1);
+                grid.add(sign, 1, 2, 1, 1);
                 break;
             case 5:
-                grid.add(sign,2,2,1,1);
+                grid.add(sign, 2, 2, 1, 1);
                 break;
             case 6:
-                grid.add(sign,3,2,1,1);
+                grid.add(sign, 3, 2, 1, 1);
                 break;
             case 7:
-                grid.add(sign,1,3,1,1);
+                grid.add(sign, 1, 3, 1, 1);
                 break;
             case 8:
-                grid.add(sign,2,3,1,1);
+                grid.add(sign, 2, 3, 1, 1);
                 break;
             case 9:
-                grid.add(sign,3,3,1,1);
+                grid.add(sign, 3, 3, 1, 1);
                 break;
-
         }
-
     }
-
 }
