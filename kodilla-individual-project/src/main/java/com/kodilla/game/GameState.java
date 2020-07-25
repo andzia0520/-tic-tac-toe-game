@@ -21,7 +21,7 @@ public class GameState {
         signDrawer.addSign(position, sign);
     }
 
-    public boolean isFinnished() {
+    public boolean isFinished() {
         return false;
     }
 }
