@@ -11,6 +11,7 @@ public class TicTacToe extends Application {
         launch(args);
     }
 
+
     @Override
     public void start(Stage primaryStage) {
 
@@ -55,8 +56,13 @@ public class TicTacToe extends Application {
                 case DIGIT9:
                     state.addSign(9, new Circle());
                     break;
+                case DIGIT0:
+                    state.getState();
+                    state.getGameResult();
+
             }
         });
+
     }
 }
 

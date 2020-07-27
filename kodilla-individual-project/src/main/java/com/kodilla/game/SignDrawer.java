@@ -1,21 +1,26 @@
 package com.kodilla.game;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
-import static com.kodilla.game.GameResult.PLAYER_WON;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.kodilla.game.GameResult.*;
 
 public class SignDrawer {
 
     private GridPane grid = new GridPane();
+    private Label result = new Label();
 
     public GridPane getGrid() {
         return grid;
     }
+
+
     private final Image youWon = new Image("file/youWon.png");
     private final Image computerWon = new Image("file/computerWon.png");
     private final Image draw = new Image("file/Draw.png");
@@ -41,6 +46,7 @@ public class SignDrawer {
         grid.setHgap(5);
         grid.setVgap(10);
         grid.setBackground(background);
+        grid.add(result, 1,2, 1,1);
     }
 
     public void addSign(int position, Sign sign) {
@@ -75,17 +81,21 @@ public class SignDrawer {
         }
     }
 
-    /*public void getGameResult(GameResult gameResult, int position) {
-        switch(gameResult, position) {
-        case PLAYER_WON):
-            grid.add(gameResult, 1, 1 ,2, 1);
-        } else if (GameResult.COMPUTER_WON){
-            grid.add(computerWon, 1, 1 ,2, 1);
-        } else if (GameResult.DRAW) {
-            grid.add(draw, 1, 1 ,2, 1);
-        } else {
-            grid.add(noResult, 1, 1 ,2, 1);
+    public void getGameResult(GameResult gameResult, int position) {
+        switch (gameResult) {
+            case PLAYER_WON:
+                System.out.println("You won :D");
+                result.setText("Wygrałeś");
+            case COMPUTER_WON:
+                System.out.println("Computer won :(");
+                result.setText("Computer won :(");
+            case DRAW:
+                System.out.println("Draw");
+                result.setText("Draw");
+            case NO_RESULT:
+                System.out.println("NO result");
+                result.setText("NO result");
         }
 
-    }*/
+    }
 }
