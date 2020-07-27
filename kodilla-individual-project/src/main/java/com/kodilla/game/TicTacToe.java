@@ -18,36 +18,13 @@ public class TicTacToe extends Application {
 
         GameState state = new GameState(signDrawer);
 
-        User user = new User();
-        Computer computer = new Computer();
-
         Scene scene = new Scene(signDrawer.getGrid(), 500, 500);
 
         primaryStage.setTitle("TicTacToe");
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        for (int i = 0; i < 9; i++) {
-            state.getState(); // ta metoda miałaby wyświetlić aktualny stan planszy
-            //ruch gracza;
-            if (state.occupiedField == false) {
-                state.addSign(3,/* tu nie wiem jak to zrobić żeby program czekał aż
-             wpiszę numer klawiaturą */ user.yourTurn());
-            } else {
-                //komunikat żeby wybrać ponownie pole, bo wybrane jest zajęte iwtedy state.addSign();
-            }
-            state.getState();
-            state.isFinished(); //ta metoda sprawdza czy gra została zakończona, jeśli nie kolejny krok
-            //ruch komputera;
-            if (state.occupiedField == false) {
-            state.addSign(1, /* tu nie wiem jak to zrobić żeby program czekał aż
-             wpiszę numer klawiaturą */ computer.yourTurn());
-            } else {
-                //komunikat żeby wybrać ponownie pole, bo wybrane jest zajęte iwtedy state.addSign();
-            }
-            state.getState();
 
-        }
 
         scene.setOnKeyPressed(event -> {
             switch (event.getCode()) {

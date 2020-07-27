@@ -7,6 +7,8 @@ import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
+import static com.kodilla.game.GameResult.PLAYER_WON;
+
 public class SignDrawer {
 
     private GridPane grid = new GridPane();
@@ -14,6 +16,11 @@ public class SignDrawer {
     public GridPane getGrid() {
         return grid;
     }
+    private final Image youWon = new Image("file/youWon.png");
+    private final Image computerWon = new Image("file/computerWon.png");
+    private final Image draw = new Image("file/Draw.png");
+    private final Image noResult = new Image("file/noResult.png");
+
 
     public SignDrawer() {
 
@@ -67,4 +74,18 @@ public class SignDrawer {
                 break;
         }
     }
+
+    /*public void getGameResult(GameResult gameResult, int position) {
+        switch(gameResult, position) {
+        case PLAYER_WON):
+            grid.add(gameResult, 1, 1 ,2, 1);
+        } else if (GameResult.COMPUTER_WON){
+            grid.add(computerWon, 1, 1 ,2, 1);
+        } else if (GameResult.DRAW) {
+            grid.add(draw, 1, 1 ,2, 1);
+        } else {
+            grid.add(noResult, 1, 1 ,2, 1);
+        }
+
+    }*/
 }
