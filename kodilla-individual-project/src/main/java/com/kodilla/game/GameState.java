@@ -31,12 +31,12 @@ public class GameState {
     public GameResult getGameResult() {
 
         Set<Integer> playerPositions = state.entrySet().stream()
-                .filter(entry -> entry.getValue().equals(new Cross()))
+                .filter(entry -> entry.getValue().isCross())
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toSet());
 
         Set<Integer> computerPositions = state.entrySet().stream()
-                .filter(entry -> entry.getValue().equals(new Circle()))
+                .filter(entry -> !entry.getValue().isCross())
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toSet());
 
