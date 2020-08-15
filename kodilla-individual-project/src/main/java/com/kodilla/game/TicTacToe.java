@@ -5,12 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-
 public class TicTacToe extends Application {
-
-    public static void main(String[] args) {
-        launch(args);
-    }
 
 
     SignDrawer signDrawer = new SignDrawer();
@@ -20,17 +15,13 @@ public class TicTacToe extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-
         Scene scene = new Scene(signDrawer.getGrid(), 500, 500);
 
         primaryStage.setTitle("TicTacToe");
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
         scene.setOnKeyPressed(this::onKeyPressed);
-
-
     }
 
     private void onKeyPressed(KeyEvent event) {
@@ -74,10 +65,8 @@ public class TicTacToe extends Application {
         state.addSign(computer.getComputerTurn(), new Circle());
         if (state.getGameResult() == GameResult.COMPUTER_WON) {
             System.out.println("Computer won");
-            return;
         } else if (state.getGameResult() == GameResult.DRAW) {
             System.out.println("Draw");
-            return;
         }
     }
 
