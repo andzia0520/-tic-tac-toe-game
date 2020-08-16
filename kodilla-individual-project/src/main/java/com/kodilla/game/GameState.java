@@ -1,13 +1,11 @@
 package com.kodilla.game;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class GameState {
-
+    //static Scanner move = new Scanner(System.in);
     private final SignDrawer signDrawer;
     private final Map<Integer, Sign> state = new HashMap<>();
 
@@ -24,32 +22,38 @@ public class GameState {
     }
 
     public void addSign(int position, Sign sign) {
-        state.put(position, sign);
-        signDrawer.addSign(position, sign);
+            state.put(position, sign);
+            signDrawer.addSign(position, sign);
+
     }
 
     public GameResult getGameResult() {
 
-        Set<Integer> playerPositions = state.entrySet().stream()
-                .filter(entry -> entry.getValue().isCross())
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toSet());
+        Set<Integer> playerPosition = getPlayersPositions(entry -> entry.getValue().isCross());
 
-        Set<Integer> computerPositions = state.entrySet().stream()
-                .filter(entry -> !entry.getValue().isCross())
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toSet());
+        Set<Integer> computerPositions = getPlayersPositions(entry -> !entry.getValue().isCross());
 
+        if (isWinning(playerPosition)) {
+            return GameResult.PLAYER_WON;
+        } else if (isWinning(computerPositions)) {
+            return GameResult.COMPUTER_WON;
+        } else if (state.size() == 9) {
+            return GameResult.DRAW;
+        } else {
+            return GameResult.NO_RESULT;
+        }
+
+        /*
         Set<Integer> positions = new HashSet<>(state.keySet());
 
-        if ((playerPositions.contains(1) && playerPositions.contains(2) && playerPositions.contains(3))
-                || (playerPositions.contains(4) && playerPositions.contains(5) && playerPositions.contains(6))
-                || (playerPositions.contains(7) && playerPositions.contains(8) && playerPositions.contains(9))
-                || (playerPositions.contains(1) && playerPositions.contains(4) && playerPositions.contains(7))
-                || (playerPositions.contains(2) && playerPositions.contains(5) && playerPositions.contains(8))
-                || (playerPositions.contains(3) && playerPositions.contains(6) && playerPositions.contains(9))
-                || (playerPositions.contains(1) && playerPositions.contains(5) && playerPositions.contains(9))
-                || (playerPositions.contains(3) && playerPositions.contains(5) && playerPositions.contains(7))) {
+        if ((winningPosition.contains(1) && winningPosition.contains(2) && winningPosition.contains(3))
+                || (winningPosition.contains(4) && winningPosition.contains(5) && winningPosition.contains(6))
+                || (winningPosition.contains(7) && winningPosition.contains(8) && winningPosition.contains(9))
+                || (winningPosition.contains(1) && winningPosition.contains(4) && winningPosition.contains(7))
+                || (winningPosition.contains(2) && winningPosition.contains(5) && winningPosition.contains(8))
+                || (winningPosition.contains(3) && winningPosition.contains(6) && winningPosition.contains(9))
+                || (winningPosition.contains(1) && winningPosition.contains(5) && winningPosition.contains(9))
+                || (winningPosition.contains(3) && winningPosition.contains(5) && winningPosition.contains(7))) {
 
             return GameResult.PLAYER_WON;
 
@@ -64,49 +68,35 @@ public class GameState {
 
             return GameResult.COMPUTER_WON;
 
-        }      else if(positions.size() == 9) {
+        } else if (positions.size() == 9) {
 
             return GameResult.DRAW;
 
         } else {
             return GameResult.NO_RESULT;
-        }
+        }*/
+    }
 
+    private boolean isWinning(Set<Integer> positions) {
+
+        return (positions.contains(1) && positions.contains(2) && positions.contains(3))
+                || (positions.contains(4) && positions.contains(5) && positions.contains(6))
+                || (positions.contains(7) && positions.contains(8) && positions.contains(9))
+                || (positions.contains(1) && positions.contains(4) && positions.contains(7))
+                || (positions.contains(2) && positions.contains(5) && positions.contains(8))
+                || (positions.contains(3) && positions.contains(6) && positions.contains(9))
+                || (positions.contains(1) && positions.contains(5) && positions.contains(9))
+                || (positions.contains(3) && positions.contains(5) && positions.contains(7));
+
+    }
+
+    private Set<Integer> getPlayersPositions(Predicate<Map.Entry<Integer, Sign>> filterPredicate) {
+        return state.entrySet().stream()
+                .filter(filterPredicate)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet());
     }
 }
 
-
-// poniższa metoda to Sprawdzenie czy pole nie jest zajęte – czyli sprawdzenie czy mapa zawiera
-// już ten klucz Chciałam skorzystać z metody containsKey i w klasie GameState napisać ogólnie
-// a konkretne klucze np.2 , 3 , wstawiać w TICTacToe  i spiąć to z wyborem gracza ale nie wiem
-// co wpisac w linii 31 GameState  - wiem ze klucz ale co tu ma być? Integer, int position nie działa, tylko jak wpiszę konkretna cyfrę
-
-/*
-    public void gameResult() {
-
-        For(Map.Entry < Integer, Sign > entry :state.entrySet())
-        if (entry.getValue(1 && 2 && 3)
-        1 && 2 && 3 || 4 && 5 && 6 || 7 && 8 && 9 || 1 && 4 && 7 || 2 && 5 && 8 || 3 && 6 && 9 || 1 && 5 && 9 || 3 && 5 && 7
-        eguals new Circle){
-            System.out.println("wygrał komputer");
-
-        }
-        if else
-        (1 && 2 && 3 || 4 && 5 && 6 || 7 && 8 && 9 || 1 && 4 && 7 || 2 && 5 && 8 || 3 && 6 && 9 || 1 && 5 && 9 || 3 && 5 && 7
-        eguals new Cross){
-            System.out.println("Gratulacje, wygrałeś");
-
-        } else{
-            System.out.println("Remis");
-        }
-
-        public boolean isFinished () {
-            if (ktoś wygrał lub remis ) {
-                return true;
-            } else{
-                return false;
-            }
-        }
-    }*/
 
 
