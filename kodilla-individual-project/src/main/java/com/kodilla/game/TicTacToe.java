@@ -13,7 +13,6 @@ public class TicTacToe extends Application {
         launch(args);
     }
 
-
     SignDrawer signDrawer = new SignDrawer();
     GameState state = new GameState(signDrawer);
     ComputersLogic computer = new ComputersLogic(state);
@@ -21,28 +20,23 @@ public class TicTacToe extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-
         Scene scene = new Scene(signDrawer.getGrid(), 500, 500);
 
         primaryStage.setTitle("TicTacToe");
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
         scene.setOnKeyPressed(this::onKeyPressed);
     }
 
     private void onKeyPressed(KeyEvent event) {
         Integer position = convertKeyToPosition(event);
-        if(position == null || state.isFieldOccupied(position)) {
+        if (position == null || state.isFieldOccupied(position)) {
             System.out.println("niepoprawny ruch");
             return;
         }
 
         state.addSign(position, new Cross());
-
-
-
 
         if (state.getGameResult() == GameResult.PLAYER_WON) {
             System.out.println("You won");
