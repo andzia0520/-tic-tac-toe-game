@@ -1,9 +1,7 @@
 package com.kodilla.game;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class GameState {
@@ -17,7 +15,6 @@ public class GameState {
 
     public Map<Integer, Sign> getState() {
         return state;
-
     }
 
     public boolean isFieldOccupied(int position) {
@@ -31,48 +28,40 @@ public class GameState {
 
     public GameResult getGameResult() {
 
-        Set<Integer> playerPositions = state.entrySet().stream()
-                .filter(entry -> entry.getValue().isCross())
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toSet());
+        Set<Integer> playerPosition = getPlayersPositions(entry -> entry.getValue().isCross());
 
-        Set<Integer> computerPositions = state.entrySet().stream()
-                .filter(entry -> !entry.getValue().isCross())
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toSet());
+        Set<Integer> computerPositions = getPlayersPositions(entry -> !entry.getValue().isCross());
 
-        Set<Integer> positions = new HashSet<>(state.keySet());
-
-        if ((playerPositions.contains(1) && playerPositions.contains(2) && playerPositions.contains(3))
-                || (playerPositions.contains(4) && playerPositions.contains(5) && playerPositions.contains(6))
-                || (playerPositions.contains(7) && playerPositions.contains(8) && playerPositions.contains(9))
-                || (playerPositions.contains(1) && playerPositions.contains(4) && playerPositions.contains(7))
-                || (playerPositions.contains(2) && playerPositions.contains(5) && playerPositions.contains(8))
-                || (playerPositions.contains(3) && playerPositions.contains(6) && playerPositions.contains(9))
-                || (playerPositions.contains(1) && playerPositions.contains(5) && playerPositions.contains(9))
-                || (playerPositions.contains(3) && playerPositions.contains(5) && playerPositions.contains(7))) {
-
+        if (isWinning(playerPosition)) {
             return GameResult.PLAYER_WON;
-
-        } else if ((computerPositions.contains(1) && computerPositions.contains(2) && computerPositions.contains(3))
-                || (computerPositions.contains(4) && computerPositions.contains(5) && computerPositions.contains(6))
-                || (computerPositions.contains(7) && computerPositions.contains(8) && computerPositions.contains(9))
-                || (computerPositions.contains(1) && computerPositions.contains(4) && computerPositions.contains(7))
-                || (computerPositions.contains(2) && computerPositions.contains(5) && computerPositions.contains(8))
-                || (computerPositions.contains(3) && computerPositions.contains(6) && computerPositions.contains(9))
-                || (computerPositions.contains(1) && computerPositions.contains(5) && computerPositions.contains(9))
-                || (computerPositions.contains(3) && computerPositions.contains(5) && computerPositions.contains(7))) {
-
+        } else if (isWinning(computerPositions)) {
             return GameResult.COMPUTER_WON;
-
-        } else if (positions.size() == 9) {
-
+        } else if (state.size() == 9) {
             return GameResult.DRAW;
-
         } else {
             return GameResult.NO_RESULT;
         }
+    }
 
+    private boolean isWinning(Set<Integer> positions) {
+
+        return (positions.contains(1) && positions.contains(2) && positions.contains(3))
+                || (positions.contains(4) && positions.contains(5) && positions.contains(6))
+                || (positions.contains(7) && positions.contains(8) && positions.contains(9))
+                || (positions.contains(1) && positions.contains(4) && positions.contains(7))
+                || (positions.contains(2) && positions.contains(5) && positions.contains(8))
+                || (positions.contains(3) && positions.contains(6) && positions.contains(9))
+                || (positions.contains(1) && positions.contains(5) && positions.contains(9))
+                || (positions.contains(3) && positions.contains(5) && positions.contains(7));
+    }
+
+    private Set<Integer> getPlayersPositions(Predicate<Map.Entry<Integer, Sign>> filterPredicate) {
+        return state.entrySet().stream()
+                .filter(filterPredicate)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toSet());
     }
 }
+
+
 
