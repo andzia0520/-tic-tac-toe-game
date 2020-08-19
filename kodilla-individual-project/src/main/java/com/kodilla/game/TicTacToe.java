@@ -1,12 +1,17 @@
 package com.kodilla.game;
 
 import javafx.application.Application;
+
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+
 public class TicTacToe extends Application {
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     SignDrawer signDrawer = new SignDrawer();
     GameState state = new GameState(signDrawer);
@@ -25,35 +30,13 @@ public class TicTacToe extends Application {
     }
 
     private void onKeyPressed(KeyEvent event) {
-        switch (event.getCode()) {
-            case DIGIT1:
-                state.addSign(1, new Cross());
-                break;
-            case DIGIT2:
-                state.addSign(2, new Cross());
-                break;
-            case DIGIT3:
-                state.addSign(3, new Cross());
-                break;
-            case DIGIT4:
-                state.addSign(4, new Cross());
-                break;
-            case DIGIT5:
-                state.addSign(5, new Cross());
-                break;
-            case DIGIT6:
-                state.addSign(6, new Cross());
-                break;
-            case DIGIT7:
-                state.addSign(7, new Cross());
-                break;
-            case DIGIT8:
-                state.addSign(8, new Cross());
-                break;
-            case DIGIT9:
-                state.addSign(9, new Cross());
-                break;
+        Integer position = convertKeyToPosition(event);
+        if (position == null || state.isFieldOccupied(position)) {
+            System.out.println("niepoprawny ruch");
+            return;
         }
+
+        state.addSign(position, new Cross());
 
         if (state.getGameResult() == GameResult.PLAYER_WON) {
             System.out.println("You won");
@@ -65,15 +48,36 @@ public class TicTacToe extends Application {
         state.addSign(computer.getComputerTurn(), new Circle());
         if (state.getGameResult() == GameResult.COMPUTER_WON) {
             System.out.println("Computer won");
+            return;
         } else if (state.getGameResult() == GameResult.DRAW) {
             System.out.println("Draw");
+            return;
         }
     }
 
-    //private void addSign(KeyEvent event, )
+    private Integer convertKeyToPosition(KeyEvent event) {
+        switch (event.getCode()) {
+            case DIGIT1:
+                return 1;
+            case DIGIT2:
+                return 2;
+            case DIGIT3:
+                return 3;
+            case DIGIT4:
+                return 4;
+            case DIGIT5:
+                return 5;
+            case DIGIT6:
+                return 6;
+            case DIGIT7:
+                return 7;
+            case DIGIT8:
+                return 8;
+            case DIGIT9:
+                return 9;
+
+            default:
+                return null;
+        }
+    }
 }
-
-
-
-
-
