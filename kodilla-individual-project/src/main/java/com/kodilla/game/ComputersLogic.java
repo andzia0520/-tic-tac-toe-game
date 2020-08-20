@@ -15,11 +15,25 @@ public class ComputersLogic {
 
     public int getComputerTurn() {
         List<Integer> freeFields = new ArrayList<>();
-        for(int i = 1; i <= 9; i++) {
-            if(!state.isFieldOccupied(i)) {
+        for (int i = 1; i <= 9; i++) {
+            if (!state.isFieldOccupied(i)) {
                 freeFields.add(i);
             }
         }
         return freeFields.get(random.nextInt(freeFields.size()));
     }
+
+    public int getComputerTurnHighLevel() {
+
+        if (state.isFieldOccupied(1)) {
+            state.addSign(3, new Circle());
+        }
+        return 3;
+
+        /*if (state.isFieldOccupied(1) && state.isFieldOccupied(3)) {
+            state.addSign(2, new Circle());
+        }
+        return 2;*/
+    }
 }
+

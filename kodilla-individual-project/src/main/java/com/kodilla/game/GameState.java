@@ -10,7 +10,7 @@ public class GameState {
     private final Map<Integer, Sign> state = new HashMap<>();
 
     public GameState(SignDrawer signDrawer) {
-        this.signDrawer = signDrawer;
+     this.signDrawer = signDrawer;
     }
 
     public Map<Integer, Sign> getState() {

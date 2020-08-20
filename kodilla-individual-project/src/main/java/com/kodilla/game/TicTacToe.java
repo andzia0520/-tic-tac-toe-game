@@ -45,7 +45,8 @@ public class TicTacToe extends Application {
             System.out.println("Draw");
             return;
         }
-        state.addSign(computer.getComputerTurn(), new Circle());
+
+        state.addSign(computer.getComputerTurnHighLevel(), new Circle());
         if (state.getGameResult() == GameResult.COMPUTER_WON) {
             System.out.println("Computer won");
             return;

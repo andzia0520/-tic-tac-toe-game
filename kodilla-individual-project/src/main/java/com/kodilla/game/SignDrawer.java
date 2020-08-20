@@ -2,6 +2,7 @@ package com.kodilla.game;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -47,6 +48,15 @@ public class SignDrawer {
         grid.setVgap(10);
         grid.setBackground(background);
         grid.add(result, 1,2, 1,1);
+
+        ChoiceBox choiceBox = new ChoiceBox();
+
+        choiceBox.getItems().add("Easy Level");
+        choiceBox.getItems().add("Hard Level");
+
+
+        HBox hbox = new HBox(choiceBox);
+        grid.getChildren().add(hbox);
     }
 
     public void addSign(int position, Sign sign) {
