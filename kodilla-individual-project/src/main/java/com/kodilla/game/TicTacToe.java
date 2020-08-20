@@ -31,13 +31,14 @@ public class TicTacToe extends Application {
 
     private void onKeyPressed(KeyEvent event) {
         Integer position = convertKeyToPosition(event);
+
         if (position == null || state.isFieldOccupied(position)) {
+
             System.out.println("niepoprawny ruch");
             return;
         }
 
         state.addSign(position, Sign.CROSS);
-        signDrawer.addSign(position, new Cross());
 
         if (state.getGameResult() == GameResult.PLAYER_WON) {
             System.out.println("You won");
