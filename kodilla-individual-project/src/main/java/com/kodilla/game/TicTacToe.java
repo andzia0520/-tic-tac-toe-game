@@ -14,7 +14,7 @@ public class TicTacToe extends Application {
     }
 
     SignDrawer signDrawer = new SignDrawer();
-    GameState state = new GameState(signDrawer);
+    GameState state = new GameState(/*signDrawer*/);
     ComputersLogic computer = new ComputersLogic(state);
 
     @Override
