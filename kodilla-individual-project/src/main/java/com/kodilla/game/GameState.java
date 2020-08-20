@@ -6,12 +6,9 @@ import java.util.stream.Collectors;
 
 public class GameState {
 
-    private final SignDrawer signDrawer;
+
     private final Map<Integer, Sign> state = new HashMap<>();
 
-    public GameState(SignDrawer signDrawer) {
-        this.signDrawer = signDrawer;
-    }
 
     public Map<Integer, Sign> getState() {
         return state;
@@ -23,14 +20,14 @@ public class GameState {
 
     public void addSign(int position, Sign sign) {
         state.put(position, sign);
-        signDrawer.addSign(position, sign);
+
     }
 
     public GameResult getGameResult() {
 
-        Set<Integer> playerPosition = getPlayersPositions(entry -> entry.getValue().isCross());
+        Set<Integer> playerPosition = getPlayersPositions(entry -> entry.getValue() == Sign.CROSS);
 
-        Set<Integer> computerPositions = getPlayersPositions(entry -> !entry.getValue().isCross());
+        Set<Integer> computerPositions = getPlayersPositions(entry -> entry.getValue() == Sign.CIRCLE);
 
         if (isWinning(playerPosition)) {
             return GameResult.PLAYER_WON;

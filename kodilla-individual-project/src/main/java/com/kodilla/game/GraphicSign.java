@@ -3,9 +3,9 @@ package com.kodilla.game;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public abstract class Sign extends ImageView {
+public abstract class GraphicSign extends ImageView {
 
-    public Sign(Image image) {
+    public GraphicSign(Image image) {
         super(image);
     }
 

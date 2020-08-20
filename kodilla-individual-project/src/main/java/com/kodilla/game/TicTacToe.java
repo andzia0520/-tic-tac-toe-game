@@ -14,7 +14,7 @@ public class TicTacToe extends Application {
     }
 
     SignDrawer signDrawer = new SignDrawer();
-    GameState state = new GameState(signDrawer);
+    GameState state = new GameState();
     ComputersLogic computer = new ComputersLogic(state);
 
     @Override
@@ -36,7 +36,8 @@ public class TicTacToe extends Application {
             return;
         }
 
-        state.addSign(position, new Cross());
+        state.addSign(position, Sign.CROSS);
+        signDrawer.addSign(position, new Cross());
 
         if (state.getGameResult() == GameResult.PLAYER_WON) {
             System.out.println("You won");
@@ -45,7 +46,10 @@ public class TicTacToe extends Application {
             System.out.println("Draw");
             return;
         }
-        state.addSign(computer.getComputerTurn(), new Circle());
+
+        int computerPosition = computer.getComputerTurn();
+        state.addSign(computerPosition, Sign.CIRCLE);
+        signDrawer.addSign(computerPosition, new Circle());
         if (state.getGameResult() == GameResult.COMPUTER_WON) {
             System.out.println("Computer won");
             return;

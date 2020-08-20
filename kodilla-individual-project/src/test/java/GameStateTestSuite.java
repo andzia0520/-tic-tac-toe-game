@@ -6,87 +6,63 @@ import java.util.Map;
 
 import org.junit.Assert;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-
 public class GameStateTestSuite {
 
+    GameState gameState = new GameState();
 
     @Test
-    public void testGetStateWithMock() {
+    public void testGetState() {
         //Given
-        SignDrawer signDrawerMock = mock(SignDrawer.class);
-        Cross cross = mock(Cross.class);
-        Circle circle = mock(Circle.class);
-
         final Map<Integer, Sign> expectedState = new HashMap<>();
-        expectedState.put(3, cross);
-        expectedState.put(9, circle);
-        expectedState.put(2, circle);
+        expectedState.put(3, Sign.CROSS);
+        expectedState.put(9, Sign.CIRCLE);
+        expectedState.put(2, Sign.CIRCLE);
 
-
-        GameState gameState = new GameState(signDrawerMock);
-
-        gameState.addSign(3, cross);
-        gameState.addSign(9, circle);
-        gameState.addSign(2, circle);
+        gameState.addSign(3, Sign.CROSS);
+        gameState.addSign(9, Sign.CIRCLE);
+        gameState.addSign(2, Sign.CIRCLE);
 
         //Then
         Assert.assertEquals(expectedState, gameState.getState());
     }
-/*@Ignore
+
     @Test
     public void testIsFieldOccupied() {
         //Given
-        GameState gameState = new GameState(new SignDrawer());
-        //final Map<Integer, Sign> state = new HashMap<>();
-        gameState.addSign(3, new Cross());
-        gameState.addSign(9, new Circle());
-
-        //When
-        //gameState.isFieldOccupied(3);
-        //gameState.isFieldOccupied(4);
+        gameState.addSign(3, Sign.CROSS);
+        gameState.addSign(9, Sign.CIRCLE);
 
         //Then
         Assert.assertTrue(gameState.isFieldOccupied(3));
-        Assert.assertFalse(gameState.isFieldOccupied(4));
+        Assert.assertFalse(gameState.isFieldOccupied(7));
     }
-@Ignore
+
     @Test
     public void testAddSign() {
-        //Given
-        GameState gameState = new GameState();
-        final Map<Integer, Sign> state = new HashMap<>();
 
         //When
-        gameState.addSign(3, new Cross());
-        gameState.addSign(9, new Circle());
+        gameState.addSign(3, Sign.CROSS);
+        gameState.addSign(9, Sign.CIRCLE);
 
         //Then
         Assert.assertEquals(2, gameState.getState().size());
     }
-@Ignore
+
     @Test
     public void testGetGameResult() {
         //Given
-        GameState gameState = new GameState();
-        final Map<Integer, Sign> state = new HashMap<>();
-        gameState.addSign(1, new Cross());
-        gameState.addSign(2, new Circle());
-        gameState.addSign(3, new Cross());
-        gameState.addSign(4, new Circle());
-        gameState.addSign(5, new Cross());
-        gameState.addSign(9, new Circle());
-        gameState.addSign(8, new Cross());
-        gameState.addSign(7, new Circle());
-        gameState.addSign(6, new Cross());
-
-        //When
-        gameState.getGameResult();
+        gameState.addSign(1, Sign.CROSS);
+        gameState.addSign(2, Sign.CIRCLE);
+        gameState.addSign(3, Sign.CROSS);
+        gameState.addSign(4, Sign.CIRCLE);
+        gameState.addSign(5, Sign.CROSS);
+        gameState.addSign(9, Sign.CIRCLE);
+        gameState.addSign(8, Sign.CROSS);
+        gameState.addSign(7, Sign.CIRCLE);
+        gameState.addSign(6, Sign.CROSS);
 
         //Then
         Assert.assertEquals(GameResult.DRAW, gameState.getGameResult());
-    }*/
+    }
 }
 
