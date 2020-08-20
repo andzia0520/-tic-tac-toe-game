@@ -1,13 +1,6 @@
 package com.kodilla.game;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-public abstract class Sign extends ImageView {
-
-    public Sign(Image image) {
-        super(image);
-    }
-
-    abstract public boolean isCross();
+public enum Sign {
+    CIRCLE,
+    CROSS
 }

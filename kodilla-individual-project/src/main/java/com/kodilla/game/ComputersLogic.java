@@ -22,18 +22,5 @@ public class ComputersLogic {
         }
         return freeFields.get(random.nextInt(freeFields.size()));
     }
-
-    public int getComputerTurnHighLevel() {
-
-        if (state.isFieldOccupied(1)) {
-            state.addSign(3, new Circle());
-        }
-        return 3;
-
-        /*if (state.isFieldOccupied(1) && state.isFieldOccupied(3)) {
-            state.addSign(2, new Circle());
-        }
-        return 2;*/
-    }
 }
 
