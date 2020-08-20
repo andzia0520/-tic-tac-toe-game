@@ -13,14 +13,12 @@ public class TicTacToe extends Application {
         launch(args);
     }
 
-
     SignDrawer signDrawer = new SignDrawer();
-    GameState state = new GameState(signDrawer);
+    GameState state = new GameState();
     ComputersLogic computer = new ComputersLogic(state);
 
     @Override
     public void start(Stage primaryStage) {
-
 
         Scene scene = new Scene(signDrawer.getGrid(), 500, 500);
 
@@ -28,21 +26,19 @@ public class TicTacToe extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
         scene.setOnKeyPressed(this::onKeyPressed);
     }
 
     private void onKeyPressed(KeyEvent event) {
         Integer position = convertKeyToPosition(event);
-        if(position == null || state.isFieldOccupied(position)) {
+
+        if (position == null || state.isFieldOccupied(position)) {
+
             System.out.println("niepoprawny ruch");
             return;
         }
 
-        state.addSign(position, new Cross());
-
-
-
+        state.addSign(position, Sign.CROSS);
 
         if (state.getGameResult() == GameResult.PLAYER_WON) {
             System.out.println("You won");
@@ -51,7 +47,10 @@ public class TicTacToe extends Application {
             System.out.println("Draw");
             return;
         }
-        state.addSign(computer.getComputerTurn(), new Circle());
+
+        int computerPosition = computer.getComputerTurn();
+        state.addSign(computerPosition, Sign.CIRCLE);
+        signDrawer.addSign(computerPosition, new Circle());
         if (state.getGameResult() == GameResult.COMPUTER_WON) {
             System.out.println("Computer won");
             return;
@@ -87,8 +86,3 @@ public class TicTacToe extends Application {
         }
     }
 }
-
-
-
-
-
