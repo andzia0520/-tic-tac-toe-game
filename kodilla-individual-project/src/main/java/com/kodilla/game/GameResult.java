@@ -5,5 +5,4 @@ public enum GameResult {
     PLAYER_WON,
     DRAW,
     NO_RESULT
-
 }

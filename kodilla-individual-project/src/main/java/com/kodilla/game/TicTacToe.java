@@ -31,7 +31,9 @@ public class TicTacToe extends Application {
 
     private void onKeyPressed(KeyEvent event) {
         Integer position = convertKeyToPosition(event);
+
         if (position == null || state.isFieldOccupied(position)) {
+
             System.out.println("niepoprawny ruch");
             return;
         }
