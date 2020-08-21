@@ -39,6 +39,7 @@ public class TicTacToe extends Application {
         }
 
         state.addSign(position, Sign.CROSS);
+        signDrawer.addSign(position, new Cross());
 
         if (state.getGameResult() == GameResult.PLAYER_WON) {
             System.out.println("You won");
