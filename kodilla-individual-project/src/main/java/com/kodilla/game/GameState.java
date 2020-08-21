@@ -17,16 +17,17 @@ public class GameState {
     }
 
     public void addSign(int position, Sign sign) {
-        state.put(position, sign);
 
+        state.put(position, sign);
     }
 
     public GameResult getGameResult() {
 
+
         Set<Integer> playerPosition = getPlayersPositions(entry -> entry.getValue() == Sign.CROSS);
 
         Set<Integer> computerPositions = getPlayersPositions(entry -> entry.getValue() == Sign.CIRCLE);
-
+       
         if (isWinning(playerPosition)) {
             return GameResult.PLAYER_WON;
         } else if (isWinning(computerPositions)) {
@@ -36,8 +37,8 @@ public class GameState {
         } else {
             return GameResult.NO_RESULT;
         }
-    }
 
+        
     private boolean isWinning(Set<Integer> positions) {
 
         return (positions.contains(1) && positions.contains(2) && positions.contains(3))
