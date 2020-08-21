@@ -8,16 +8,10 @@ import javafx.scene.layout.*;
 public class SignDrawer {
 
     private GridPane grid = new GridPane();
+
     public GridPane getGrid() {
         return grid;
     }
-
-
-    /*Image youWon = new Image("file/youWon.png");
-    Image computerWon = new Image("file/computerWon.png");
-    Image draw = new Image("file/Draw.png");
-    Image noResult = new Image("file/noResult.png");*/
-
 
     public SignDrawer() {
 
@@ -38,7 +32,6 @@ public class SignDrawer {
         grid.setHgap(5);
         grid.setVgap(10);
         grid.setBackground(background);
-        //grid.add(result, 1, 2, 1, 1);
     }
 
     public void addSign(int position, GraphicSign graphicSign) {
@@ -72,16 +65,4 @@ public class SignDrawer {
                 break;
         }
     }
-
-    /*public void getGameResult() {
-
-        ImageView playerWin = new ImageView();
-        playerWin.setImage(youWon);
-        ImageView computerWin = new ImageView();
-        computerWin.setImage(computerWon);
-        ImageView drawNoneWin = new ImageView();
-        drawNoneWin.setImage(draw);
-        ImageView withoutResult = new ImageView();
-        withoutResult.setImage(noResult);
-    }*/
 }
