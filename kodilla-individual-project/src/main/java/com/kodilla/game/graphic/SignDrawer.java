@@ -1,4 +1,4 @@
-package com.kodilla.game;
+package com.kodilla.game.graphic;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

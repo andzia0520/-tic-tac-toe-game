@@ -1,4 +1,4 @@
-package com.kodilla.game;
+package com.kodilla.game.graphic;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

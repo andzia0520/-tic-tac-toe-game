@@ -1,4 +1,4 @@
-package com.kodilla.game;
+package com.kodilla.game.gameLogic;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -18,7 +18,6 @@ public class GameState {
 
     public void addSign(int position, Sign sign) {
         state.put(position, sign);
-
     }
 
     public GameResult getGameResult() {
