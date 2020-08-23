@@ -1,4 +1,4 @@
-package com.kodilla.game.gameLogic;
+package com.kodilla.game.logic;
 
 import java.util.ArrayList;
 import java.util.List;

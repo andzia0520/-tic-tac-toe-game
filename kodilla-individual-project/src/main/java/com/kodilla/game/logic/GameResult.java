@@ -1,4 +1,4 @@
-package com.kodilla.game.gameLogic;
+package com.kodilla.game.logic;
 
 public enum GameResult {
     COMPUTER_WON,

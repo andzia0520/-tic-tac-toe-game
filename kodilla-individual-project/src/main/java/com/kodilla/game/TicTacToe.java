@@ -1,6 +1,6 @@
 package com.kodilla.game;
 
-import com.kodilla.game.gameLogic.*;
+import com.kodilla.game.flow.GameFlow;
 import com.kodilla.game.graphic.SignDrawer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -12,8 +12,16 @@ public class TicTacToe extends Application {
         launch(args);
     }
 
-    SignDrawer signDrawer = new SignDrawer();
+    SignDrawer signDrawer;
     GameFlow gameFlow = new GameFlow();
+
+    public TicTacToe(SignDrawer signDrawer) {
+        this.signDrawer = signDrawer;
+    }
+
+    public SignDrawer getSignDrawer() {
+        return signDrawer;
+    }
 
     @Override
     public void start(Stage primaryStage) {

@@ -1,17 +1,23 @@
-package com.kodilla.game.gameLogic;
+package com.kodilla.game.flow;
 
+import com.kodilla.game.TicTacToe;
+import com.kodilla.game.logic.ComputersLogic;
+import com.kodilla.game.logic.GameResult;
+import com.kodilla.game.logic.GameState;
+import com.kodilla.game.logic.Sign;
 import com.kodilla.game.graphic.Circle;
 import com.kodilla.game.graphic.Cross;
 import com.kodilla.game.graphic.SignDrawer;
-import com.kodilla.game.interactionWithPlayer.ConversionKeyToPosition;
+import com.kodilla.game.interaction.ConversionKeyToPosition;
 import javafx.scene.input.KeyEvent;
 
 public class GameFlow {
 
-    SignDrawer signDrawer = new SignDrawer();
+
     GameState state = new GameState();
     ComputersLogic computer = new ComputersLogic(state);
     ConversionKeyToPosition conversion = new ConversionKeyToPosition();
+    TicTacToe tic = new TicTacToe(new SignDrawer());
 
     public void onKeyPressed(KeyEvent event) {
         Integer position = conversion.convertKeyToPosition(event);
@@ -23,7 +29,7 @@ public class GameFlow {
         }
 
         state.addSign(position, Sign.CROSS);
-        signDrawer.addSign(position, new Cross());
+        tic.getSignDrawer().addSign(position, new Cross());
 
         if (state.getGameResult() == GameResult.PLAYER_WON) {
             System.out.println("You won");
@@ -35,7 +41,7 @@ public class GameFlow {
 
         int computerPosition = computer.getComputerTurn();
         state.addSign(computerPosition, Sign.CIRCLE);
-        signDrawer.addSign(computerPosition, new Circle());
+        tic.getSignDrawer().addSign(computerPosition, new Circle());
         if (state.getGameResult() == GameResult.COMPUTER_WON) {
             System.out.println("Computer won");
             return;

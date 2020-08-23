@@ -1,4 +1,4 @@
-package com.kodilla.game.interactionWithPlayer;
+package com.kodilla.game.interaction;
 
 import javafx.scene.input.KeyEvent;
 

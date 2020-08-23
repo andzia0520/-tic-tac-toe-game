@@ -1,6 +1,6 @@
-import com.kodilla.game.gameLogic.GameResult;
-import com.kodilla.game.gameLogic.GameState;
-import com.kodilla.game.gameLogic.Sign;
+import com.kodilla.game.logic.GameResult;
+import com.kodilla.game.logic.GameState;
+import com.kodilla.game.logic.Sign;
 import org.junit.*;
 
 import java.util.HashMap;
