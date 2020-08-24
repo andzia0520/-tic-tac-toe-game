@@ -8,8 +8,8 @@ public class Circle extends GraphicSign {
         super(new Image("file/circle.png"));
     }
 
-    @Override
-    public boolean isCross() {
-        return false;
-    }
+    //@Override
+    //public boolean isCross() {
+        //return false;
+    //}
 }

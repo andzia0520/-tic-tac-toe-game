@@ -13,29 +13,14 @@ public class GameStateTestSuite {
     GameState gameState = new GameState();
 
     @Test
-    public void testGetStateAndAddSign() {
-        //Given
-        final Map<Integer, Sign> expectedState = new HashMap<>();
-        expectedState.put(3, Sign.CROSS);
-        expectedState.put(9, Sign.CIRCLE);
-        expectedState.put(2, Sign.CIRCLE);
-
+    public void testAddSignAndIsFieldOccupied() {
         //when
         gameState.addSign(3, Sign.CROSS);
         gameState.addSign(9, Sign.CIRCLE);
         gameState.addSign(2, Sign.CIRCLE);
 
         //Then
-        Assert.assertEquals(expectedState, gameState.getState());
-    }
-
-    @Test
-    public void testIsFieldOccupied() {
-        //Given
-        gameState.addSign(3, Sign.CROSS);
-        gameState.addSign(9, Sign.CIRCLE);
-
-        //Then
+        Assert.assertFalse(gameState.isFieldOccupied(1));
         Assert.assertTrue(gameState.isFieldOccupied(3));
         Assert.assertTrue(gameState.isFieldOccupied(9));
         Assert.assertFalse(gameState.isFieldOccupied(7));

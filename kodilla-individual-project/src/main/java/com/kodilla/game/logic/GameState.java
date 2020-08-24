@@ -8,10 +8,6 @@ public class GameState {
 
     private final Map<Integer, Sign> state = new HashMap<>();
 
-    public Map<Integer, Sign> getState() {
-        return state;
-    }
-
     public boolean isFieldOccupied(int position) {
         return state.containsKey(position);
     }

@@ -9,5 +9,5 @@ public abstract class GraphicSign extends ImageView {
         super(image);
     }
 
-    abstract public boolean isCross();
+    //abstract public boolean isCross();
 }

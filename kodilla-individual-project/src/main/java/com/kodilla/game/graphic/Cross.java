@@ -8,8 +8,8 @@ public class Cross extends GraphicSign {
         super(new Image("file/cross.jpg"));
     }
 
-    @Override
-    public boolean isCross() {
-        return true;
-    }
+    //@Override
+    //public boolean isCross() {
+        //return true;
+    //}
 }
