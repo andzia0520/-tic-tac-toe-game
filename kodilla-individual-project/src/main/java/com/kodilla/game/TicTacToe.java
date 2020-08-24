@@ -1,16 +1,10 @@
 package com.kodilla.game;
 
-//import com.kodilla.game.flow.GameFlow;
-import com.kodilla.game.graphic.Circle;
-import com.kodilla.game.graphic.Cross;
+import com.kodilla.game.flow.GameFlow;
 import com.kodilla.game.graphic.SignDrawer;
-import com.kodilla.game.logic.ComputersLogic;
-import com.kodilla.game.logic.GameResult;
 import com.kodilla.game.logic.GameState;
-import com.kodilla.game.logic.Sign;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class TicTacToe extends Application {
@@ -18,10 +12,10 @@ public class TicTacToe extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    GameState state = new GameState();
+    GameState gameState = new GameState();
     SignDrawer signDrawer = new SignDrawer();
-    //GameFlow gameFlow = new GameFlow(signDrawer, gameState);
-    ComputersLogic computer = new ComputersLogic(state);
+    GameFlow gameFlow = new GameFlow(signDrawer, gameState);
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -32,64 +26,6 @@ public class TicTacToe extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        //scene.setOnKeyPressed(e -> gameFlow.onKeyPressed(e));
-        scene.setOnKeyPressed(this::onKeyPressed);
-    }
-
-    private void onKeyPressed(KeyEvent event) {
-        Integer position = convertKeyToPosition(event);
-
-        if (position == null || state.isFieldOccupied(position)) {
-            signDrawer.showMessage();
-            return;
-        }
-
-        state.addSign(position, Sign.CROSS);
-        signDrawer.addSign(position, new Cross());
-
-        if (state.getGameResult() == GameResult.PLAYER_WON) {
-            signDrawer.showGameResult(GameResult.PLAYER_WON);
-            return;
-        } else if (state.getGameResult() == GameResult.DRAW) {
-            signDrawer.showGameResult(GameResult.DRAW);
-            return;
-        }
-
-        int computerPosition = computer.getComputerTurn();
-        state.addSign(computerPosition, Sign.CIRCLE);
-        signDrawer.addSign(computerPosition, new Circle());
-        if (state.getGameResult() == GameResult.COMPUTER_WON) {
-            signDrawer.showGameResult(GameResult.COMPUTER_WON);
-            return;
-        } else if (state.getGameResult() == GameResult.DRAW) {
-            signDrawer.showGameResult(GameResult.PLAYER_WON);
-            return;
-        }
-    }
-
-    private Integer convertKeyToPosition(KeyEvent event) {
-        switch (event.getCode()) {
-            case DIGIT1:
-                return 1;
-            case DIGIT2:
-                return 2;
-            case DIGIT3:
-                return 3;
-            case DIGIT4:
-                return 4;
-            case DIGIT5:
-                return 5;
-            case DIGIT6:
-                return 6;
-            case DIGIT7:
-                return 7;
-            case DIGIT8:
-                return 8;
-            case DIGIT9:
-                return 9;
-
-            default:
-                return null;
-        }
+        scene.setOnKeyPressed(e -> gameFlow.onKeyPressed(e));
     }
 }

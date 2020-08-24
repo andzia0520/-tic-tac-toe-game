@@ -1,4 +1,3 @@
-/*
 package com.kodilla.game.flow;
 
 import com.kodilla.game.logic.ComputersLogic;
@@ -28,8 +27,7 @@ public class GameFlow {
         Integer position = conversion.convertKeyToPosition(event);
 
         if (position == null || gameState.isFieldOccupied(position)) {
-
-            System.out.println("niepoprawny ruch");
+            signDrawer.showMessage();
             return;
         }
 
@@ -37,10 +35,10 @@ public class GameFlow {
         signDrawer.addSign(position, new Cross());
 
         if (gameState.getGameResult() == GameResult.PLAYER_WON) {
-            System.out.println("You won");
+            signDrawer.showGameResult(GameResult.PLAYER_WON);
             return;
         } else if (gameState.getGameResult() == GameResult.DRAW) {
-            System.out.println("Draw");
+            signDrawer.showGameResult(GameResult.DRAW);
             return;
         }
 
@@ -48,12 +46,11 @@ public class GameFlow {
         gameState.addSign(computerPosition, Sign.CIRCLE);
         signDrawer.addSign(computerPosition, new Circle());
         if (gameState.getGameResult() == GameResult.COMPUTER_WON) {
-            System.out.println("Computer won");
+            signDrawer.showGameResult(GameResult.COMPUTER_WON);
             return;
         } else if (gameState.getGameResult() == GameResult.DRAW) {
-            System.out.println("Draw");
+            signDrawer.showGameResult(GameResult.DRAW);
             return;
         }
     }
 }
-*/

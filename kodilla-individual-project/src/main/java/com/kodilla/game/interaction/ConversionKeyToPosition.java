@@ -1,4 +1,4 @@
-/*
+
 package com.kodilla.game.interaction;
 
 import javafx.scene.input.KeyEvent;
@@ -30,4 +30,3 @@ public class ConversionKeyToPosition {
         }
     }
 }
-*/
