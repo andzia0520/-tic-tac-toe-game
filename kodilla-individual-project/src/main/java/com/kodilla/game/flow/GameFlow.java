@@ -13,14 +13,15 @@ import javafx.scene.input.KeyEvent;
 public class GameFlow {
 
     SignDrawer signDrawer;
-    GameState gameState;
+    GameState gameState = null;
+    ComputersLogic computersLogic;
 
-    public GameFlow(SignDrawer signDrawer, GameState gameState) {
+    public GameFlow(SignDrawer signDrawer, GameState gameState, ComputersLogic computersLogic) {
         this.signDrawer = signDrawer;
         this.gameState = gameState;
+        this.computersLogic = computersLogic;
     }
 
-    ComputersLogic computer = new ComputersLogic(gameState);
     ConversionKeyToPosition conversion = new ConversionKeyToPosition();
 
     public void onKeyPressed(KeyEvent event) {
@@ -42,7 +43,7 @@ public class GameFlow {
             return;
         }
 
-        int computerPosition = computer.getComputerTurn();
+        int computerPosition = computersLogic.getComputerTurn();
         gameState.addSign(computerPosition, Sign.CIRCLE);
         signDrawer.addSign(computerPosition, new Circle());
         if (gameState.getGameResult() == GameResult.COMPUTER_WON) {

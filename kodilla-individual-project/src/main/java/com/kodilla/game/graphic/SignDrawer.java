@@ -7,8 +7,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 
-import static com.kodilla.game.logic.GameResult.PLAYER_WON;
-
 public class SignDrawer {
 
     private GridPane grid = new GridPane();
@@ -81,7 +79,7 @@ public class SignDrawer {
     }
 
     public void showGameResult(GameResult gameResult) {
-        if(gameResult == GameResult.PLAYER_WON) {
+        if (gameResult == GameResult.PLAYER_WON) {
             Alert playerWon = new Alert(Alert.AlertType.INFORMATION);
             playerWon.setTitle("Good news");
             playerWon.setHeaderText(null);
@@ -89,7 +87,7 @@ public class SignDrawer {
 
             playerWon.showAndWait();
 
-        } else if(gameResult == GameResult.COMPUTER_WON)  {
+        } else if (gameResult == GameResult.COMPUTER_WON) {
             Alert computerWon = new Alert(Alert.AlertType.INFORMATION);
             computerWon.setTitle("Uuuuuups");
             computerWon.setHeaderText(null);
@@ -107,7 +105,7 @@ public class SignDrawer {
         }
     }
 
-    public void showMessage(){
+    public void showMessage() {
         Alert illegalMovement = new Alert(Alert.AlertType.WARNING);
         illegalMovement.setTitle("Illegal game movement");
         illegalMovement.setHeaderText(null);
