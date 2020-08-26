@@ -8,6 +8,4 @@ public abstract class GraphicSign extends ImageView {
     public GraphicSign(Image image) {
         super(image);
     }
-
-    //abstract public boolean isCross();
 }

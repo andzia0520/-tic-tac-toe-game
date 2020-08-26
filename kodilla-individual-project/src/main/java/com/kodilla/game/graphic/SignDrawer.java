@@ -1,11 +1,15 @@
 package com.kodilla.game.graphic;
 
 import com.kodilla.game.logic.GameResult;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+
+import java.util.Optional;
 
 public class SignDrawer {
 
@@ -39,8 +43,10 @@ public class SignDrawer {
         alert.setTitle("Welcome to the Game");
         alert.setHeaderText(null);
         alert.setContentText("Dear Player, \n" +
-                "Lets start to play the TicTacToe game. You start as first, your moves are symbolized by an \"X\", and computers moves by \"O\".\n" +
-                "The game is operated with keys 1 - 9. Press the number of the field on which you want to place your symbol.\n" +
+                "Lets start to play the TicTacToe game.\n" +
+                "You start as first, your moves are symbolized by an \"X\", " +
+                "and computers moves by \"O\".\n" + "The game is operated with keys 1 - 9.\n" +
+                "Press the number of the field on which you want to place your symbol.\n" +
                 "Good luck !!!\n");
 
         alert.showAndWait();
@@ -78,31 +84,31 @@ public class SignDrawer {
         }
     }
 
-    public void showGameResult(GameResult gameResult) {
-        if (gameResult == GameResult.PLAYER_WON) {
-            Alert playerWon = new Alert(Alert.AlertType.INFORMATION);
-            playerWon.setTitle("Good news");
-            playerWon.setHeaderText(null);
-            playerWon.setContentText("\n      Congratulations, you won !!!");
+    public void showPlayerWon() {
+        Alert playerWon = new Alert(Alert.AlertType.INFORMATION);
+        playerWon.setTitle("Good news");
+        playerWon.setHeaderText(null);
+        playerWon.setContentText("\n      Congratulations, you won !!!");
 
-            playerWon.showAndWait();
+        playerWon.showAndWait();
+    }
 
-        } else if (gameResult == GameResult.COMPUTER_WON) {
-            Alert computerWon = new Alert(Alert.AlertType.INFORMATION);
-            computerWon.setTitle("Uuuuuups");
-            computerWon.setHeaderText(null);
-            computerWon.setContentText("\n      Computer won :(");
+    public void showComputerWon() {
+        Alert computerWon = new Alert(Alert.AlertType.INFORMATION);
+        computerWon.setTitle("Uuuuuups");
+        computerWon.setHeaderText(null);
+        computerWon.setContentText("\n      Computer won :(");
 
-            computerWon.showAndWait();
+        computerWon.showAndWait();
+    }
 
-        } else {
-            Alert draw = new Alert(Alert.AlertType.INFORMATION);
-            draw.setTitle("Good news");
-            draw.setHeaderText(null);
-            draw.setContentText("\n      Draw !!!");
+    public void showDraw() {
+        Alert draw = new Alert(Alert.AlertType.INFORMATION);
+        draw.setTitle("Good news");
+        draw.setHeaderText(null);
+        draw.setContentText("\n      Draw !!!");
 
-            draw.showAndWait();
-        }
+        draw.showAndWait();
     }
 
     public void showMessage() {
@@ -112,5 +118,20 @@ public class SignDrawer {
         illegalMovement.setContentText("Please choose only empty fields (1 - 9)");
 
         illegalMovement.showAndWait();
+    }
+
+    public void playAgain() {
+        Alert playAgain = new Alert(Alert.AlertType.CONFIRMATION);
+        playAgain.setTitle("What will you do? ");
+        playAgain.setHeaderText(null);
+        playAgain.setContentText("Do you want to play again?");
+
+        Optional<ButtonType> result = playAgain.showAndWait();
+        if (result.get() == ButtonType.OK) {
+
+        } else {
+            Platform.exit();
+        }
+
     }
 }

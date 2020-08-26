@@ -12,9 +12,10 @@ import javafx.scene.input.KeyEvent;
 
 public class GameFlow {
 
-    SignDrawer signDrawer;
-    GameState gameState = null;
-    ComputersLogic computersLogic;
+    private final SignDrawer signDrawer;
+    private GameState gameState = null;
+    private final ComputersLogic computersLogic;
+    ConversionKeyToPosition conversion = new ConversionKeyToPosition();
 
     public GameFlow(SignDrawer signDrawer, GameState gameState, ComputersLogic computersLogic) {
         this.signDrawer = signDrawer;
@@ -22,9 +23,7 @@ public class GameFlow {
         this.computersLogic = computersLogic;
     }
 
-    ConversionKeyToPosition conversion = new ConversionKeyToPosition();
-
-    public void onKeyPressed(KeyEvent event) {
+    public void handleKey(KeyEvent event) {
         Integer position = conversion.convertKeyToPosition(event);
 
         if (position == null || gameState.isFieldOccupied(position)) {
@@ -36,21 +35,26 @@ public class GameFlow {
         signDrawer.addSign(position, new Cross());
 
         if (gameState.getGameResult() == GameResult.PLAYER_WON) {
-            signDrawer.showGameResult(GameResult.PLAYER_WON);
+            signDrawer.showPlayerWon();
+            signDrawer.playAgain();
             return;
         } else if (gameState.getGameResult() == GameResult.DRAW) {
-            signDrawer.showGameResult(GameResult.DRAW);
+            signDrawer.showDraw();
+            signDrawer.playAgain();
             return;
         }
 
         int computerPosition = computersLogic.getComputerTurn();
         gameState.addSign(computerPosition, Sign.CIRCLE);
         signDrawer.addSign(computerPosition, new Circle());
+
         if (gameState.getGameResult() == GameResult.COMPUTER_WON) {
-            signDrawer.showGameResult(GameResult.COMPUTER_WON);
+            signDrawer.showComputerWon();
+            signDrawer.playAgain();
             return;
         } else if (gameState.getGameResult() == GameResult.DRAW) {
-            signDrawer.showGameResult(GameResult.DRAW);
+            signDrawer.showDraw();
+            signDrawer.playAgain();
             return;
         }
     }

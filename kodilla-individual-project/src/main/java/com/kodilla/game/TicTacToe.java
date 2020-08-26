@@ -28,6 +28,6 @@ public class TicTacToe extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        scene.setOnKeyPressed(e -> gameFlow.onKeyPressed(e));
+        scene.setOnKeyPressed(e -> gameFlow.handleKey(e));
     }
 }
