@@ -2,6 +2,7 @@ package com.kodilla.game;
 
 import com.kodilla.game.flow.GameFlow;
 import com.kodilla.game.graphic.SignDrawer;
+import com.kodilla.game.interaction.ConversionKeyToPosition;
 import com.kodilla.game.logic.ComputersLogic;
 import com.kodilla.game.logic.GameState;
 import javafx.application.Application;
@@ -14,10 +15,11 @@ public class TicTacToe extends Application {
         launch(args);
     }
 
-    GameState gameState = new GameState();
-    SignDrawer signDrawer = new SignDrawer();
-    ComputersLogic computersLogic = new ComputersLogic(gameState);
-    GameFlow gameFlow = new GameFlow(signDrawer, gameState, computersLogic);
+    private final GameState gameState = new GameState();
+    private final SignDrawer signDrawer = new SignDrawer();
+    private final ComputersLogic computersLogic = new ComputersLogic(gameState);
+    private final GameFlow gameFlow = new GameFlow(signDrawer, gameState, computersLogic);
+    private final ConversionKeyToPosition conversion = new ConversionKeyToPosition();
 
     @Override
     public void start(Stage primaryStage) {
@@ -28,6 +30,7 @@ public class TicTacToe extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        scene.setOnKeyPressed(e -> gameFlow.handleKey(e));
+
+        scene.setOnKeyPressed(e -> gameFlow.handleUserChoice(conversion.convertKeyToPosition(e)));
     }
 }

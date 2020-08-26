@@ -120,7 +120,7 @@ public class SignDrawer {
         illegalMovement.showAndWait();
     }
 
-    public void playAgain() {
+    public void playAgainOrClose() {
         Alert playAgain = new Alert(Alert.AlertType.CONFIRMATION);
         playAgain.setTitle("What will you do? ");
         playAgain.setHeaderText(null);
@@ -132,6 +132,5 @@ public class SignDrawer {
         } else {
             Platform.exit();
         }
-
     }
 }

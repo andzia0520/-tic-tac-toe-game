@@ -7,15 +7,13 @@ import com.kodilla.game.logic.Sign;
 import com.kodilla.game.graphic.Circle;
 import com.kodilla.game.graphic.Cross;
 import com.kodilla.game.graphic.SignDrawer;
-import com.kodilla.game.interaction.ConversionKeyToPosition;
-import javafx.scene.input.KeyEvent;
 
 public class GameFlow {
 
     private final SignDrawer signDrawer;
-    private GameState gameState = null;
+    private final GameState gameState;
     private final ComputersLogic computersLogic;
-    ConversionKeyToPosition conversion = new ConversionKeyToPosition();
+
 
     public GameFlow(SignDrawer signDrawer, GameState gameState, ComputersLogic computersLogic) {
         this.signDrawer = signDrawer;
@@ -23,8 +21,7 @@ public class GameFlow {
         this.computersLogic = computersLogic;
     }
 
-    public void handleKey(KeyEvent event) {
-        Integer position = conversion.convertKeyToPosition(event);
+    public void handleUserChoice(Integer position) {
 
         if (position == null || gameState.isFieldOccupied(position)) {
             signDrawer.showMessage();
@@ -36,11 +33,11 @@ public class GameFlow {
 
         if (gameState.getGameResult() == GameResult.PLAYER_WON) {
             signDrawer.showPlayerWon();
-            signDrawer.playAgain();
+            signDrawer.playAgainOrClose();
             return;
         } else if (gameState.getGameResult() == GameResult.DRAW) {
             signDrawer.showDraw();
-            signDrawer.playAgain();
+            signDrawer.playAgainOrClose();
             return;
         }
 
@@ -50,11 +47,11 @@ public class GameFlow {
 
         if (gameState.getGameResult() == GameResult.COMPUTER_WON) {
             signDrawer.showComputerWon();
-            signDrawer.playAgain();
+            signDrawer.playAgainOrClose();
             return;
         } else if (gameState.getGameResult() == GameResult.DRAW) {
             signDrawer.showDraw();
-            signDrawer.playAgain();
+            signDrawer.playAgainOrClose();
             return;
         }
     }
