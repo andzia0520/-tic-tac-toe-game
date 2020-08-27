@@ -57,8 +57,7 @@ public class GameFlow {
     }
 
     public void playAgainOrClose() {
-        signDrawer.clearBoard();
         gameState.clearState();
-
+        signDrawer.clearBoard();
     }
 }

@@ -87,5 +87,21 @@ public class GameStateTestSuite {
         //Then
         Assert.assertEquals(GameResult.COMPUTER_WON, gameState.getGameResult());
     }
+
+    @Test
+    public  void TestClearState() {
+        //Given
+        gameState.addSign(1, Sign.CROSS);
+        gameState.addSign(2, Sign.CIRCLE);
+        gameState.addSign(3, Sign.CROSS);
+
+        //when
+        gameState.clearState();
+
+        //Then
+        Assert.assertFalse(gameState.isFieldOccupied(1));
+        Assert.assertFalse(gameState.isFieldOccupied(2));
+        Assert.assertFalse(gameState.isFieldOccupied(3));
+    }
 }
 

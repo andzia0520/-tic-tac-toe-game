@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class GameState {
 
-    private final Map<Integer, Sign> state = new HashMap<>();
+    private  Map<Integer, Sign> state = new HashMap<>();
 
     public boolean isFieldOccupied(int position) {
         return state.containsKey(position);
