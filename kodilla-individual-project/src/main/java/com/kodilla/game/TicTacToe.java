@@ -24,13 +24,13 @@ public class TicTacToe extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        Scene scene = new Scene(signDrawer.getGrid(), 500, 500);
+        Scene scene = new Scene(signDrawer.getGrid(), 800, 600);
 
         primaryStage.setTitle("TicTacToe");
         primaryStage.setScene(scene);
         primaryStage.show();
 
-
         scene.setOnKeyPressed(e -> gameFlow.handleUserChoice(conversion.convertKeyToPosition(e)));
+        gameFlow.playAgainOrClose();
     }
 }

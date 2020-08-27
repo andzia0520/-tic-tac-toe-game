@@ -55,4 +55,10 @@ public class GameFlow {
             return;
         }
     }
+
+    public void playAgainOrClose() {
+        signDrawer.clearBoard();
+        gameState.clearState();
+
+    }
 }

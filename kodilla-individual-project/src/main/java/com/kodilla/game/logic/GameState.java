@@ -51,4 +51,9 @@ public class GameState {
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toSet());
     }
+
+    public Map<Integer, Sign> clearState() {
+        state.clear();
+        return state;
+    }
 }
