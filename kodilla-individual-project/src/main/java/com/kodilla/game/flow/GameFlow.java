@@ -14,7 +14,6 @@ public class GameFlow {
     private final GameState gameState;
     private final ComputersLogic computersLogic;
 
-
     public GameFlow(SignDrawer signDrawer, GameState gameState, ComputersLogic computersLogic) {
         this.signDrawer = signDrawer;
         this.gameState = gameState;
@@ -33,11 +32,11 @@ public class GameFlow {
 
         if (gameState.getGameResult() == GameResult.PLAYER_WON) {
             signDrawer.showPlayerWon();
-            signDrawer.playAgainOrClose();
+            finnish();
             return;
         } else if (gameState.getGameResult() == GameResult.DRAW) {
             signDrawer.showDraw();
-            signDrawer.playAgainOrClose();
+            finnish();
             return;
         }
 
@@ -47,17 +46,22 @@ public class GameFlow {
 
         if (gameState.getGameResult() == GameResult.COMPUTER_WON) {
             signDrawer.showComputerWon();
-            signDrawer.playAgainOrClose();
+            finnish();
             return;
         } else if (gameState.getGameResult() == GameResult.DRAW) {
             signDrawer.showDraw();
-            signDrawer.playAgainOrClose();
+            finnish();
             return;
         }
     }
 
-    public void playAgainOrClose() {
+    public void playAgain() {
         gameState.clearState();
         signDrawer.clearBoard();
+    }
+
+    public void finnish() {
+        signDrawer.playAgainOrClose();
+        playAgain();
     }
 }

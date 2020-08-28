@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class GameState {
 
-    private  Map<Integer, Sign> state = new HashMap<>();
+    private final Map<Integer, Sign> state = new HashMap<>();
 
     public boolean isFieldOccupied(int position) {
         return state.containsKey(position);
@@ -52,8 +52,7 @@ public class GameState {
                 .collect(Collectors.toSet());
     }
 
-    public Map<Integer, Sign> clearState() {
+    public void clearState() {
         state.clear();
-        return state;
     }
 }
