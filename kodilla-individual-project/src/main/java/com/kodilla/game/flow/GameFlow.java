@@ -22,13 +22,8 @@ public class GameFlow {
 
     public void handleUserChoice(Integer position) {
 
-        if (position == null || gameState.isFieldOccupied(position)) {
-            signDrawer.showIllegalMovement();
-            return;
-        }
-
-        gameState.addSign(position, Sign.CROSS);
-        signDrawer.addSign(position, new Cross());
+        checkIllegalMovement(position);
+        addPlayerMove(position);
 
         GameResult result = gameState.getGameResult();
         if (result == GameResult.PLAYER_WON) {
@@ -41,9 +36,7 @@ public class GameFlow {
             return;
         }
 
-        int computerPosition = computersLogic.getComputerTurn();
-        gameState.addSign(computerPosition, Sign.CIRCLE);
-        signDrawer.addSign(computerPosition, new Circle());
+        addComputerMove();
 
         GameResult gameResult = gameState.getGameResult();
         if (gameResult == GameResult.COMPUTER_WON) {
@@ -53,6 +46,23 @@ public class GameFlow {
             signDrawer.showDraw();
             finish();
         }
+    }
+
+    private void checkIllegalMovement(Integer position) {
+        if (position == null || gameState.isFieldOccupied(position)) {
+            signDrawer.showIllegalMovement();
+        }
+    }
+
+    private void addPlayerMove(Integer position) {
+        gameState.addSign(position, Sign.CROSS);
+        signDrawer.addSign(position, new Cross());
+    }
+
+    private void addComputerMove() {
+        int computerPosition = computersLogic.getComputerTurn();
+        gameState.addSign(computerPosition, Sign.CIRCLE);
+        signDrawer.addSign(computerPosition, new Circle());
     }
 
     private void playAgain() {
