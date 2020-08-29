@@ -23,20 +23,21 @@ public class GameFlow {
     public void handleUserChoice(Integer position) {
 
         if (position == null || gameState.isFieldOccupied(position)) {
-            signDrawer.showMessage();
+            signDrawer.showIllegalMovement();
             return;
         }
 
         gameState.addSign(position, Sign.CROSS);
         signDrawer.addSign(position, new Cross());
 
-        if (gameState.getGameResult() == GameResult.PLAYER_WON) {
+        GameResult result = gameState.getGameResult();
+        if (result == GameResult.PLAYER_WON) {
             signDrawer.showPlayerWon();
-            finnish();
+            finish();
             return;
-        } else if (gameState.getGameResult() == GameResult.DRAW) {
+        } else if (result == GameResult.DRAW) {
             signDrawer.showDraw();
-            finnish();
+            finish();
             return;
         }
 
@@ -44,24 +45,25 @@ public class GameFlow {
         gameState.addSign(computerPosition, Sign.CIRCLE);
         signDrawer.addSign(computerPosition, new Circle());
 
-        if (gameState.getGameResult() == GameResult.COMPUTER_WON) {
+        GameResult gameResult = gameState.getGameResult();
+        if (gameResult == GameResult.COMPUTER_WON) {
             signDrawer.showComputerWon();
-            finnish();
-            return;
-        } else if (gameState.getGameResult() == GameResult.DRAW) {
+            finish();
+        } else if (gameResult == GameResult.DRAW) {
             signDrawer.showDraw();
-            finnish();
-            return;
+            finish();
         }
     }
 
-    public void playAgain() {
+    private void playAgain() {
         gameState.clearState();
         signDrawer.clearBoard();
     }
 
-    public void finnish() {
-        signDrawer.playAgainOrClose();
-        playAgain();
+    private void finish() {
+        if (signDrawer.playAgainOrClose()) {
+            playAgain();
+        }
     }
 }
+

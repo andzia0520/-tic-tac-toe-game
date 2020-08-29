@@ -99,11 +99,11 @@ public class SignDrawer {
         draw.showAndWait();
     }
 
-    public void showMessage() {
+    public void showIllegalMovement() {
         Alert illegalMovement = new Alert(Alert.AlertType.WARNING);
         illegalMovement.setTitle("Illegal game movement");
         illegalMovement.setHeaderText(null);
-        illegalMovement.setContentText("Please choose only empty fields (use keys 1 - 9)");
+        illegalMovement.setContentText("Please choose one of empty fields (use keys 1 - 9)");
 
         illegalMovement.showAndWait();
     }
@@ -112,7 +112,7 @@ public class SignDrawer {
         grid.getChildren().clear();
     }
 
-    public void playAgainOrClose() {
+    public boolean playAgainOrClose() {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Game over");
@@ -125,10 +125,12 @@ public class SignDrawer {
         alert.getButtonTypes().setAll(buttonTypeYES, buttonTypeNo);
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeYES) {
-           clearBoard();
+        if (result.isPresent() && result.get() == buttonTypeYES) {
+            clearBoard();
+            return true;
         } else {
             Platform.exit();
+            return false;
         }
     }
 }

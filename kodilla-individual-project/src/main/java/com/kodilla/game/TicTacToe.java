@@ -31,6 +31,5 @@ public class TicTacToe extends Application {
         primaryStage.show();
 
         scene.setOnKeyPressed(e -> gameFlow.handleUserChoice(conversion.convertKeyToPosition(e)));
-        gameFlow.playAgain();
     }
 }
