@@ -11,15 +11,15 @@ import javafx.stage.Stage;
 
 public class TicTacToe extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     private final GameState gameState = new GameState();
     private final SignDrawer signDrawer = new SignDrawer();
     private final ComputersLogic computersLogic = new ComputersLogic(gameState);
     private final GameFlow gameFlow = new GameFlow(signDrawer, gameState, computersLogic);
     private final ConversionKeyToPosition conversion = new ConversionKeyToPosition();
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) {

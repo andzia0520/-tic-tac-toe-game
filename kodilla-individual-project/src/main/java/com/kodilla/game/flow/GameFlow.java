@@ -22,36 +22,37 @@ public class GameFlow {
 
     public void handleUserChoice(Integer position) {
 
-        checkIllegalMovement(position);
-        addPlayerMove(position);
+        if (!isIllegalMovement(position)) {
+            addPlayerMove(position);
 
-        GameResult result = gameState.getGameResult();
-        if (result == GameResult.PLAYER_WON) {
-            signDrawer.showPlayerWon();
-            finish();
-            return;
-        } else if (result == GameResult.DRAW) {
-            signDrawer.showDraw();
-            finish();
-            return;
-        }
+            GameResult result = gameState.getGameResult();
+            if (result == GameResult.PLAYER_WON) {
+                signDrawer.showPlayerWon();
+                finish();
+                return;
+            } else if (result == GameResult.DRAW) {
+                signDrawer.showDraw();
+                finish();
+                return;
+            }
 
-        addComputerMove();
+            addComputerMove();
 
-        GameResult gameResult = gameState.getGameResult();
-        if (gameResult == GameResult.COMPUTER_WON) {
-            signDrawer.showComputerWon();
-            finish();
-        } else if (gameResult == GameResult.DRAW) {
-            signDrawer.showDraw();
-            finish();
+            GameResult gameResult = gameState.getGameResult();
+            if (gameResult == GameResult.COMPUTER_WON) {
+                signDrawer.showComputerWon();
+                finish();
+            } else if (gameResult == GameResult.DRAW) {
+                signDrawer.showDraw();
+                finish();
+            }
+        } else {
+            signDrawer.showIllegalMovement();
         }
     }
 
-    private void checkIllegalMovement(Integer position) {
-        if (position == null || gameState.isFieldOccupied(position)) {
-            signDrawer.showIllegalMovement();
-        }
+    private boolean isIllegalMovement(Integer position) {
+        return position == null || gameState.isFieldOccupied(position);
     }
 
     private void addPlayerMove(Integer position) {
