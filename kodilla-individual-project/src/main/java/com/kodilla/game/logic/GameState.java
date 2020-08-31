@@ -1,4 +1,4 @@
-package com.kodilla.game;
+package com.kodilla.game.logic;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -8,17 +8,12 @@ public class GameState {
 
     private final Map<Integer, Sign> state = new HashMap<>();
 
-    public Map<Integer, Sign> getState() {
-        return state;
-    }
-
     public boolean isFieldOccupied(int position) {
         return state.containsKey(position);
     }
 
     public void addSign(int position, Sign sign) {
         state.put(position, sign);
-
     }
 
     public GameResult getGameResult() {
@@ -55,5 +50,9 @@ public class GameState {
                 .filter(filterPredicate)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toSet());
+    }
+
+    public void clearState() {
+        state.clear();
     }
 }
